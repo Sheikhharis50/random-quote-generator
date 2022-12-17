@@ -17,14 +17,24 @@ class QuoteService:
 
     def load(self):
         """
-        It opens the file, reads the contents, and then loads the contents into the quotes variable
+        It opens the file, reads the contents, and then loads the contents
+        into the quotes variable.
         """
-        with open(os.path.join(settings.BASE_DIR, self.FILE_NAME), "r") as quotes_file:
+        with (
+            open(
+                os.path.join(
+                    settings.BASE_DIR,
+                    self.FILE_NAME,
+                ),
+                "r",
+            ) as quotes_file
+        ):
             self.quotes = json.loads(quotes_file.read())
 
     def get_quote(self) -> Dict[str, Any]:
         """
         Return a random quote from the list of quotes.
-        :return: A dictionary with a key of "quote" and a value of a random quote from the quotes list.
+        :return: A dictionary with a key of "quote" and a value of a random
+        quote from the quotes list.
         """
         return self.quotes[random.randint(0, len(self.quotes) - 1)]
